@@ -1,0 +1,36 @@
+{
+  "name": "Funk Wah",
+  "master": {
+    "in_gain_db": 0,
+    "out_gain_db": 0,
+    "bypass": false
+  },
+  "chain": [
+    {
+      "type": "comp",
+      "enabled": true,
+      "mix": 1.0,
+      "params": {
+        "thresh": -26,
+        "ratio": 5,
+        "attack": 5,
+        "release": 150,
+        "blend": 100,
+        "level": -1.0
+      }
+    },
+    {
+      "type": "env_filter",
+      "enabled": true,
+      "mix": 1.0,
+      "params": {
+        "sens": 60,
+        "q": 4.5,
+        "range": 1800,
+        "dir": 0,
+        "mode": 0,
+        "mix": 100
+      }
+    }
+  ]
+}

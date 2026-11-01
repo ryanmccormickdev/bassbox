@@ -1,0 +1,146 @@
+NEON kernel for the A2-Full (8-channel) WaveNet layers of NeuralAmpModelerCore.
+
+Applies to NeuralAmpModelerCore v0.6.0 (MIT, https://github.com/sdatkinson/NeuralAmpModelerCore),
+file NAM/wavenet/a2_fast.cpp, from the NeuralAmpModelerCore root:  git apply -p1 <this file>
+
+Upstream issues one small Eigen GEMM per tap for these layers. On a Cortex-A72 the GEMM packing
+dominates, so this keeps the convolution accumulators for 4 frames in NEON registers across all
+taps and through the bias, mixin, LeakyReLU, head-sum and 1x1 tail. Build with -DBB_A2_NO_NEON
+to get the upstream path back. See engine/third_party/README.md for the measured effect.
+
+--- a/NAM/wavenet/a2_fast.cpp
++++ b/NAM/wavenet/a2_fast.cpp
+@@ -24,6 +24,9 @@
+   #include <vector>
+ 
+   #include <Eigen/Dense>
++  #if (defined(__aarch64__) || defined(__ARM_NEON)) && !defined(BB_A2_NO_NEON)
++    #include <arm_neon.h> // bassbox patch: NEON kernel below
++  #endif
+ 
+   #include "../dsp.h"
+ 
+@@ -37,6 +40,98 @@
+ namespace
+ {
+ 
++  // bassbox patch (see engine/third_party/README.md): register-tiled NEON kernel for the
++  // A2-Full (Channels == 8) layer. The upstream path issues one Eigen 8x8 x 8xN GEMM per tap
++  // (161 per block) and is dominated by GEMM packing on Cortex-A72 (~1 MAC/cycle). Here the
++  // conv accumulators for T frames stay in NEON registers across all K taps and through the
++  // bias/mixin/LeakyReLU/head-sum/1x1-residual tail. Disable with -DBB_A2_NO_NEON.
++  #if (defined(__aarch64__) || defined(__ARM_NEON)) && !defined(BB_A2_NO_NEON)
++    #define BB_A2_NEON 1
++
++// one 8-wide column step: acc{0,1} += w(:, J) * v[LANE], w column-major 8x8
++    #define BB_A2_COL(ACC0, ACC1, WPTR, J, V, LANE)                                   \
++      do                                                                             \
++      {                                                                              \
++        const float32x4_t w0_ = vld1q_f32((WPTR) + (J) * 8);                          \
++        const float32x4_t w1_ = vld1q_f32((WPTR) + (J) * 8 + 4);                      \
++        for (int t = 0; t < T; t++)                                                  \
++        {                                                                            \
++          ACC0[t] = vfmaq_laneq_f32(ACC0[t], w0_, V[t], LANE);                        \
++          ACC1[t] = vfmaq_laneq_f32(ACC1[t], w1_, V[t], LANE);                        \
++        }                                                                            \
++      } while (0)
++
++template <int K, int T>
++inline void a2_neon8_tile(const float* hist, const int* tb, int f, const float* cw, const float* cb,
++                          const float* mx, const float* lw, const float* lb, const float* cond, float* hs,
++                          float* li, float slope)
++{
++  float32x4_t z0[T], z1[T];
++  {
++    const float32x4_t cb0 = vld1q_f32(cb), cb1 = vld1q_f32(cb + 4);
++    const float32x4_t mx0 = vld1q_f32(mx), mx1 = vld1q_f32(mx + 4);
++    for (int t = 0; t < T; t++)
++    {
++      z0[t] = vfmaq_n_f32(cb0, mx0, cond[f + t]);
++      z1[t] = vfmaq_n_f32(cb1, mx1, cond[f + t]);
++    }
++  }
++  for (int k = 0; k < K; k++)
++  {
++    const float* W = cw + static_cast<size_t>(k) * 64;
++    const float* x = hist + static_cast<size_t>(tb[k] + f) * 8;
++    float32x4_t xa[T], xb[T];
++    for (int t = 0; t < T; t++)
++    {
++      xa[t] = vld1q_f32(x + t * 8);
++      xb[t] = vld1q_f32(x + t * 8 + 4);
++    }
++    BB_A2_COL(z0, z1, W, 0, xa, 0);
++    BB_A2_COL(z0, z1, W, 1, xa, 1);
++    BB_A2_COL(z0, z1, W, 2, xa, 2);
++    BB_A2_COL(z0, z1, W, 3, xa, 3);
++    BB_A2_COL(z0, z1, W, 4, xb, 0);
++    BB_A2_COL(z0, z1, W, 5, xb, 1);
++    BB_A2_COL(z0, z1, W, 6, xb, 2);
++    BB_A2_COL(z0, z1, W, 7, xb, 3);
++  }
++  const float32x4_t sl = vdupq_n_f32(slope);
++  for (int t = 0; t < T; t++)
++  {
++    z0[t] = vmaxq_f32(z0[t], vmulq_f32(z0[t], sl)); // LeakyReLU, 0 < slope < 1
++    z1[t] = vmaxq_f32(z1[t], vmulq_f32(z1[t], sl));
++    float* h = hs + static_cast<size_t>(f + t) * 8;
++    vst1q_f32(h, vaddq_f32(vld1q_f32(h), z0[t]));
++    vst1q_f32(h + 4, vaddq_f32(vld1q_f32(h + 4), z1[t]));
++  }
++  float32x4_t a0[T], a1[T];
++  {
++    const float32x4_t lb0 = vld1q_f32(lb), lb1 = vld1q_f32(lb + 4);
++    for (int t = 0; t < T; t++)
++    {
++      const float* l = li + static_cast<size_t>(f + t) * 8;
++      a0[t] = vaddq_f32(vld1q_f32(l), lb0);
++      a1[t] = vaddq_f32(vld1q_f32(l + 4), lb1);
++    }
++  }
++  BB_A2_COL(a0, a1, lw, 0, z0, 0);
++  BB_A2_COL(a0, a1, lw, 1, z0, 1);
++  BB_A2_COL(a0, a1, lw, 2, z0, 2);
++  BB_A2_COL(a0, a1, lw, 3, z0, 3);
++  BB_A2_COL(a0, a1, lw, 4, z1, 0);
++  BB_A2_COL(a0, a1, lw, 5, z1, 1);
++  BB_A2_COL(a0, a1, lw, 6, z1, 2);
++  BB_A2_COL(a0, a1, lw, 7, z1, 3);
++  for (int t = 0; t < T; t++)
++  {
++    float* l = li + static_cast<size_t>(f + t) * 8;
++    vst1q_f32(l, a0[t]);
++    vst1q_f32(l + 4, a1[t]);
++  }
++}
++    #undef BB_A2_COL
++  #endif // BB_A2_NEON
++
+ // =============================================================================
+ // A2FastModel<Channels>
+ //
+@@ -644,6 +739,24 @@
+     //   - All conv + post-conv ops operate on the full block — even the
+     //     mixin, bias, activation, and 1x1 residual are Eigen block ops so
+     //     they vectorize the same way the GEMMs do.
++  #if defined(BB_A2_NEON)
++    if constexpr (Channels == 8)
++    {
++      // bassbox patch: NEON register-tiled path (see a2_neon8_tile)
++      int tb[K];
++      for (int k = 0; k < K; k++)
++        tb[k] = tap_base_phys(K - 1 - k);
++      const float* hist = L.history.data();
++      int f = 0;
++      for (; f + 4 <= num_frames; f += 4)
++        a2_neon8_tile<K, 4>(hist, tb, f, L.conv_w.data(), L.conv_b.data(), L.mixin_w.data(), L.l1x1_w.data(),
++                            L.l1x1_b.data(), cond, _head_sum.data(), _layer_in.data(), kLeakySlope);
++      for (; f < num_frames; f++)
++        a2_neon8_tile<K, 1>(hist, tb, f, L.conv_w.data(), L.conv_b.data(), L.mixin_w.data(), L.l1x1_w.data(),
++                            L.l1x1_b.data(), cond, _head_sum.data(), _layer_in.data(), kLeakySlope);
++      return;
++    }
++  #endif
+     using MatCC = Eigen::Matrix<float, Channels, Channels>;
+     using MatCDyn = Eigen::Matrix<float, Channels, Eigen::Dynamic>;
+     using VecC = Eigen::Matrix<float, Channels, 1>;

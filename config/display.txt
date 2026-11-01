@@ -1,0 +1,9 @@
+
+# bassbox: 4.0" ST7796S SPI display (CE0) + XPT2046 touch (CE1). Init sequence and
+# rotation live in /lib/firmware/st7796s.bin (display/make_st7796s_bin.py).
+dtparam=spi=on
+dtoverlay=mipi-dbi-spi,spi0-0,speed=48000000,write-only
+dtparam=compatible=st7796s\0panel-mipi-dbi-spi
+dtparam=width=320,height=480,width-mm=56,height-mm=84
+dtparam=reset-gpio=25,dc-gpio=24
+dtoverlay=ads7846,cs=1,penirq=17,penirq_pull=2,speed=1000000,xohms=150

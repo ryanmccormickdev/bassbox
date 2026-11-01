@@ -1,0 +1,47 @@
+{
+  "name": "Fretless Chorus",
+  "master": {
+    "in_gain_db": 0,
+    "out_gain_db": 0,
+    "bypass": false
+  },
+  "chain": [
+    {
+      "type": "comp",
+      "enabled": true,
+      "mix": 1.0,
+      "params": {
+        "thresh": -24,
+        "ratio": 3,
+        "attack": 15,
+        "release": 300,
+        "blend": 100,
+        "level": -0.5
+      }
+    },
+    {
+      "type": "chorus",
+      "enabled": true,
+      "mix": 1.0,
+      "params": {
+        "rate": 0.5,
+        "depth": 55,
+        "mix": 45,
+        "lowcut": 140
+      }
+    },
+    {
+      "type": "reverb",
+      "enabled": true,
+      "mix": 1.0,
+      "params": {
+        "mix": 18,
+        "decay": 1.8,
+        "size": 55,
+        "damp": 55,
+        "predly": 15,
+        "lowcut": 180
+      }
+    }
+  ]
+}

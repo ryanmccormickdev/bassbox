@@ -1,0 +1,1347 @@
+{
+ "effects": [
+  {
+   "id": "comp",
+   "name": "Compressor",
+   "category": "dynamics",
+   "description": "Evens out your attack and sustain.",
+   "tails": false,
+   "params": [
+    {
+     "id": "thresh",
+     "name": "Thresh",
+     "min": -60,
+     "max": 0,
+     "def": -18,
+     "unit": "dB",
+     "curve": "lin",
+     "type": "float",
+     "step": 0
+    },
+    {
+     "id": "ratio",
+     "name": "Ratio",
+     "min": 1,
+     "max": 20,
+     "def": 4,
+     "unit": ":1",
+     "curve": "log",
+     "type": "float",
+     "step": 0
+    },
+    {
+     "id": "attack",
+     "name": "Attack",
+     "min": 0.1,
+     "max": 100,
+     "def": 10,
+     "unit": "ms",
+     "curve": "log",
+     "type": "float",
+     "step": 0
+    },
+    {
+     "id": "release",
+     "name": "Release",
+     "min": 10,
+     "max": 1000,
+     "def": 120,
+     "unit": "ms",
+     "curve": "log",
+     "type": "float",
+     "step": 0
+    },
+    {
+     "id": "makeup",
+     "name": "Makeup",
+     "min": 0,
+     "max": 24,
+     "def": 3,
+     "unit": "dB",
+     "curve": "lin",
+     "type": "float",
+     "step": 0
+    }
+   ]
+  },
+  {
+   "id": "gate",
+   "name": "Noise Gate",
+   "category": "dynamics",
+   "description": "Silences hum and hiss between notes.",
+   "tails": false,
+   "params": [
+    {
+     "id": "thresh",
+     "name": "Thresh",
+     "min": -90,
+     "max": -20,
+     "def": -60,
+     "unit": "dB",
+     "curve": "lin",
+     "type": "float",
+     "step": 0
+    },
+    {
+     "id": "release",
+     "name": "Release",
+     "min": 5,
+     "max": 500,
+     "def": 80,
+     "unit": "ms",
+     "curve": "log",
+     "type": "float",
+     "step": 0
+    },
+    {
+     "id": "range",
+     "name": "Range",
+     "min": -90,
+     "max": 0,
+     "def": -80,
+     "unit": "dB",
+     "curve": "lin",
+     "type": "float",
+     "step": 0
+    }
+   ]
+  },
+  {
+   "id": "limiter",
+   "name": "Limiter",
+   "category": "dynamics",
+   "description": "Brick-wall ceiling so nothing clips.",
+   "tails": false,
+   "params": [
+    {
+     "id": "ceiling",
+     "name": "Ceiling",
+     "min": -24,
+     "max": 0,
+     "def": -1,
+     "unit": "dB",
+     "curve": "lin",
+     "type": "float",
+     "step": 0
+    },
+    {
+     "id": "release",
+     "name": "Release",
+     "min": 10,
+     "max": 500,
+     "def": 60,
+     "unit": "ms",
+     "curve": "log",
+     "type": "float",
+     "step": 0
+    }
+   ]
+  },
+  {
+   "id": "overdrive",
+   "name": "Overdrive",
+   "category": "drive",
+   "description": "Warm, amp-like push that cleans up.",
+   "tails": false,
+   "params": [
+    {
+     "id": "drive",
+     "name": "Drive",
+     "min": 0,
+     "max": 1,
+     "def": 0.5,
+     "unit": "%",
+     "curve": "lin",
+     "type": "float",
+     "step": 0
+    },
+    {
+     "id": "tone",
+     "name": "Tone",
+     "min": 0,
+     "max": 1,
+     "def": 0.5,
+     "unit": "%",
+     "curve": "lin",
+     "type": "float",
+     "step": 0
+    },
+    {
+     "id": "level",
+     "name": "Level",
+     "min": -24,
+     "max": 12,
+     "def": 0,
+     "unit": "dB",
+     "curve": "lin",
+     "type": "float",
+     "step": 0
+    },
+    {
+     "id": "blend",
+     "name": "Blend",
+     "min": 0,
+     "max": 1,
+     "def": 1.0,
+     "unit": "%",
+     "curve": "lin",
+     "type": "float",
+     "step": 0
+    }
+   ]
+  },
+  {
+   "id": "distortion",
+   "name": "Distortion",
+   "category": "drive",
+   "description": "Hard-clipped grit with a tight low end.",
+   "tails": false,
+   "params": [
+    {
+     "id": "drive",
+     "name": "Drive",
+     "min": 0,
+     "max": 1,
+     "def": 0.62,
+     "unit": "%",
+     "curve": "lin",
+     "type": "float",
+     "step": 0
+    },
+    {
+     "id": "tone",
+     "name": "Tone",
+     "min": 0,
+     "max": 1,
+     "def": 0.45,
+     "unit": "%",
+     "curve": "lin",
+     "type": "float",
+     "step": 0
+    },
+    {
+     "id": "level",
+     "name": "Level",
+     "min": -24,
+     "max": 12,
+     "def": -3,
+     "unit": "dB",
+     "curve": "lin",
+     "type": "float",
+     "step": 0
+    },
+    {
+     "id": "blend",
+     "name": "Blend",
+     "min": 0,
+     "max": 1,
+     "def": 0.8,
+     "unit": "%",
+     "curve": "lin",
+     "type": "float",
+     "step": 0
+    },
+    {
+     "id": "lowcut",
+     "name": "Low Cut",
+     "min": 20,
+     "max": 400,
+     "def": 80,
+     "unit": "Hz",
+     "curve": "log",
+     "type": "float",
+     "step": 0
+    }
+   ]
+  },
+  {
+   "id": "fuzz",
+   "name": "Fuzz",
+   "category": "drive",
+   "description": "Gated, buzzing, square-wave sustain.",
+   "tails": false,
+   "params": [
+    {
+     "id": "fuzz",
+     "name": "Fuzz",
+     "min": 0,
+     "max": 1,
+     "def": 0.7,
+     "unit": "%",
+     "curve": "lin",
+     "type": "float",
+     "step": 0
+    },
+    {
+     "id": "tone",
+     "name": "Tone",
+     "min": 0,
+     "max": 1,
+     "def": 0.5,
+     "unit": "%",
+     "curve": "lin",
+     "type": "float",
+     "step": 0
+    },
+    {
+     "id": "level",
+     "name": "Level",
+     "min": -24,
+     "max": 12,
+     "def": -6,
+     "unit": "dB",
+     "curve": "lin",
+     "type": "float",
+     "step": 0
+    },
+    {
+     "id": "gate",
+     "name": "Gate",
+     "min": 0,
+     "max": 1,
+     "def": 0.2,
+     "unit": "%",
+     "curve": "lin",
+     "type": "float",
+     "step": 0
+    }
+   ]
+  },
+  {
+   "id": "bitcrush",
+   "name": "Bit Crusher",
+   "category": "drive",
+   "description": "Lo-fi sample and bit reduction.",
+   "tails": false,
+   "params": [
+    {
+     "id": "bits",
+     "name": "Bits",
+     "min": 2,
+     "max": 16,
+     "def": 8,
+     "unit": "",
+     "curve": "lin",
+     "type": "float",
+     "step": 1
+    },
+    {
+     "id": "rate",
+     "name": "Rate",
+     "min": 1000,
+     "max": 48000,
+     "def": 12000,
+     "unit": "Hz",
+     "curve": "log",
+     "type": "float",
+     "step": 0
+    },
+    {
+     "id": "mix",
+     "name": "Crush",
+     "min": 0,
+     "max": 1,
+     "def": 0.6,
+     "unit": "%",
+     "curve": "lin",
+     "type": "float",
+     "step": 0
+    }
+   ]
+  },
+  {
+   "id": "bass_amp",
+   "name": "Bass Amp",
+   "category": "amp",
+   "description": "Tube preamp with a 3-band tone stack.",
+   "tails": false,
+   "params": [
+    {
+     "id": "gain",
+     "name": "Gain",
+     "min": 0,
+     "max": 1,
+     "def": 0.4,
+     "unit": "%",
+     "curve": "lin",
+     "type": "float",
+     "step": 0
+    },
+    {
+     "id": "bass",
+     "name": "Bass",
+     "min": -12,
+     "max": 12,
+     "def": 2,
+     "unit": "dB",
+     "curve": "lin",
+     "type": "float",
+     "step": 0
+    },
+    {
+     "id": "mid",
+     "name": "Mid",
+     "min": -12,
+     "max": 12,
+     "def": 0,
+     "unit": "dB",
+     "curve": "lin",
+     "type": "float",
+     "step": 0
+    },
+    {
+     "id": "treble",
+     "name": "Treble",
+     "min": -12,
+     "max": 12,
+     "def": 1,
+     "unit": "dB",
+     "curve": "lin",
+     "type": "float",
+     "step": 0
+    },
+    {
+     "id": "master",
+     "name": "Master",
+     "min": -24,
+     "max": 12,
+     "def": 0,
+     "unit": "dB",
+     "curve": "lin",
+     "type": "float",
+     "step": 0
+    }
+   ]
+  },
+  {
+   "id": "cab",
+   "name": "Cabinet",
+   "category": "amp",
+   "description": "8x10, 4x10 or 1x15 speaker cabinet.",
+   "tails": false,
+   "params": [
+    {
+     "id": "cab",
+     "name": "Cab",
+     "min": 0,
+     "max": 2,
+     "def": 0,
+     "unit": "",
+     "curve": "lin",
+     "type": "enum",
+     "step": 0,
+     "options": [
+      "8x10",
+      "4x10",
+      "1x15"
+     ]
+    },
+    {
+     "id": "mic",
+     "name": "Mic Pos",
+     "min": 0,
+     "max": 1,
+     "def": 0.3,
+     "unit": "",
+     "curve": "lin",
+     "type": "float",
+     "step": 0
+    },
+    {
+     "id": "air",
+     "name": "Air",
+     "min": 0,
+     "max": 1,
+     "def": 0.2,
+     "unit": "%",
+     "curve": "lin",
+     "type": "float",
+     "step": 0
+    }
+   ]
+  },
+  {
+   "id": "nam",
+   "name": "Neural Amp",
+   "category": "amp",
+   "description": "Neural capture of a real amp rig.",
+   "tails": false,
+   "params": [
+    {
+     "id": "input",
+     "name": "Input",
+     "min": -24,
+     "max": 24,
+     "def": 0,
+     "unit": "dB",
+     "curve": "lin",
+     "type": "float",
+     "step": 0
+    },
+    {
+     "id": "output",
+     "name": "Output",
+     "min": -24,
+     "max": 24,
+     "def": 0,
+     "unit": "dB",
+     "curve": "lin",
+     "type": "float",
+     "step": 0
+    }
+   ]
+  },
+  {
+   "id": "wah",
+   "name": "Wah",
+   "category": "filter",
+   "description": "Vocal sweep from heel to toe.",
+   "tails": false,
+   "params": [
+    {
+     "id": "pos",
+     "name": "Pedal",
+     "min": 0,
+     "max": 1,
+     "def": 0.5,
+     "unit": "%",
+     "curve": "lin",
+     "type": "float",
+     "step": 0
+    },
+    {
+     "id": "q",
+     "name": "Q",
+     "min": 0.5,
+     "max": 10,
+     "def": 4,
+     "unit": "",
+     "curve": "log",
+     "type": "float",
+     "step": 0
+    },
+    {
+     "id": "lo",
+     "name": "Heel",
+     "min": 200,
+     "max": 800,
+     "def": 350,
+     "unit": "Hz",
+     "curve": "log",
+     "type": "float",
+     "step": 0
+    },
+    {
+     "id": "hi",
+     "name": "Toe",
+     "min": 800,
+     "max": 3000,
+     "def": 1800,
+     "unit": "Hz",
+     "curve": "log",
+     "type": "float",
+     "step": 0
+    }
+   ]
+  },
+  {
+   "id": "env_filter",
+   "name": "Env Filter",
+   "category": "filter",
+   "description": "Funky auto-wah that follows your dynamics.",
+   "tails": false,
+   "params": [
+    {
+     "id": "sens",
+     "name": "Sens",
+     "min": 0,
+     "max": 1,
+     "def": 0.6,
+     "unit": "%",
+     "curve": "lin",
+     "type": "float",
+     "step": 0
+    },
+    {
+     "id": "q",
+     "name": "Q",
+     "min": 0.5,
+     "max": 10,
+     "def": 5,
+     "unit": "",
+     "curve": "log",
+     "type": "float",
+     "step": 0
+    },
+    {
+     "id": "range",
+     "name": "Range",
+     "min": 200,
+     "max": 4000,
+     "def": 1500,
+     "unit": "Hz",
+     "curve": "log",
+     "type": "float",
+     "step": 0
+    },
+    {
+     "id": "mode",
+     "name": "Mode",
+     "min": 0,
+     "max": 2,
+     "def": 0,
+     "unit": "",
+     "curve": "lin",
+     "type": "enum",
+     "step": 0,
+     "options": [
+      "LP",
+      "BP",
+      "HP"
+     ]
+    },
+    {
+     "id": "dir",
+     "name": "Dir",
+     "min": 0,
+     "max": 1,
+     "def": 0,
+     "unit": "",
+     "curve": "lin",
+     "type": "enum",
+     "step": 0,
+     "options": [
+      "Up",
+      "Down"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "lowpass",
+   "name": "Low-Pass",
+   "category": "filter",
+   "description": "Resonant filter to roll off the top.",
+   "tails": false,
+   "params": [
+    {
+     "id": "cutoff",
+     "name": "Cutoff",
+     "min": 80,
+     "max": 12000,
+     "def": 2000,
+     "unit": "Hz",
+     "curve": "log",
+     "type": "float",
+     "step": 0
+    },
+    {
+     "id": "res",
+     "name": "Reso",
+     "min": 0.5,
+     "max": 12,
+     "def": 0.7,
+     "unit": "",
+     "curve": "log",
+     "type": "float",
+     "step": 0
+    }
+   ]
+  },
+  {
+   "id": "synth_filter",
+   "name": "Synth Filter",
+   "category": "filter",
+   "description": "Envelope-swept ladder for synth bass.",
+   "tails": false,
+   "params": [
+    {
+     "id": "cutoff",
+     "name": "Cutoff",
+     "min": 80,
+     "max": 8000,
+     "def": 600,
+     "unit": "Hz",
+     "curve": "log",
+     "type": "float",
+     "step": 0
+    },
+    {
+     "id": "res",
+     "name": "Reso",
+     "min": 0,
+     "max": 1,
+     "def": 0.6,
+     "unit": "%",
+     "curve": "lin",
+     "type": "float",
+     "step": 0
+    },
+    {
+     "id": "env",
+     "name": "Env",
+     "min": 0,
+     "max": 1,
+     "def": 0.7,
+     "unit": "%",
+     "curve": "lin",
+     "type": "float",
+     "step": 0
+    },
+    {
+     "id": "decay",
+     "name": "Decay",
+     "min": 20,
+     "max": 2000,
+     "def": 300,
+     "unit": "ms",
+     "curve": "log",
+     "type": "float",
+     "step": 0
+    }
+   ]
+  },
+  {
+   "id": "eq3",
+   "name": "3-Band EQ",
+   "category": "eq",
+   "description": "Bass, mid and treble with a sweepable mid.",
+   "tails": false,
+   "params": [
+    {
+     "id": "low",
+     "name": "Low",
+     "min": -15,
+     "max": 15,
+     "def": 0,
+     "unit": "dB",
+     "curve": "lin",
+     "type": "float",
+     "step": 0
+    },
+    {
+     "id": "mid",
+     "name": "Mid",
+     "min": -15,
+     "max": 15,
+     "def": 0,
+     "unit": "dB",
+     "curve": "lin",
+     "type": "float",
+     "step": 0
+    },
+    {
+     "id": "midf",
+     "name": "Mid Freq",
+     "min": 200,
+     "max": 3000,
+     "def": 800,
+     "unit": "Hz",
+     "curve": "log",
+     "type": "float",
+     "step": 0
+    },
+    {
+     "id": "high",
+     "name": "High",
+     "min": -15,
+     "max": 15,
+     "def": 0,
+     "unit": "dB",
+     "curve": "lin",
+     "type": "float",
+     "step": 0
+    }
+   ]
+  },
+  {
+   "id": "graphic_eq",
+   "name": "Graphic EQ",
+   "category": "eq",
+   "description": "Seven bands tuned for bass.",
+   "tails": false,
+   "params": [
+    {
+     "id": "b0",
+     "name": "50",
+     "min": -12,
+     "max": 12,
+     "def": 0,
+     "unit": "dB",
+     "curve": "lin",
+     "type": "float",
+     "step": 0
+    },
+    {
+     "id": "b1",
+     "name": "120",
+     "min": -12,
+     "max": 12,
+     "def": 0,
+     "unit": "dB",
+     "curve": "lin",
+     "type": "float",
+     "step": 0
+    },
+    {
+     "id": "b2",
+     "name": "400",
+     "min": -12,
+     "max": 12,
+     "def": 0,
+     "unit": "dB",
+     "curve": "lin",
+     "type": "float",
+     "step": 0
+    },
+    {
+     "id": "b3",
+     "name": "500",
+     "min": -12,
+     "max": 12,
+     "def": 0,
+     "unit": "dB",
+     "curve": "lin",
+     "type": "float",
+     "step": 0
+    },
+    {
+     "id": "b4",
+     "name": "800",
+     "min": -12,
+     "max": 12,
+     "def": 0,
+     "unit": "dB",
+     "curve": "lin",
+     "type": "float",
+     "step": 0
+    },
+    {
+     "id": "b5",
+     "name": "4.5k",
+     "min": -12,
+     "max": 12,
+     "def": 0,
+     "unit": "dB",
+     "curve": "lin",
+     "type": "float",
+     "step": 0
+    },
+    {
+     "id": "b6",
+     "name": "10k",
+     "min": -12,
+     "max": 12,
+     "def": 0,
+     "unit": "dB",
+     "curve": "lin",
+     "type": "float",
+     "step": 0
+    }
+   ]
+  },
+  {
+   "id": "tilt",
+   "name": "Tilt EQ",
+   "category": "eq",
+   "description": "One knob: darker or brighter.",
+   "tails": false,
+   "params": [
+    {
+     "id": "tilt",
+     "name": "Tilt",
+     "min": -6,
+     "max": 6,
+     "def": 0,
+     "unit": "dB",
+     "curve": "lin",
+     "type": "float",
+     "step": 0
+    },
+    {
+     "id": "pivot",
+     "name": "Pivot",
+     "min": 200,
+     "max": 2000,
+     "def": 700,
+     "unit": "Hz",
+     "curve": "log",
+     "type": "float",
+     "step": 0
+    }
+   ]
+  },
+  {
+   "id": "chorus",
+   "name": "Chorus",
+   "category": "modulation",
+   "description": "Lush doubling with a low-end lock.",
+   "tails": false,
+   "params": [
+    {
+     "id": "rate",
+     "name": "Rate",
+     "min": 0.05,
+     "max": 8,
+     "def": 0.8,
+     "unit": "Hz",
+     "curve": "log",
+     "type": "float",
+     "step": 0
+    },
+    {
+     "id": "depth",
+     "name": "Depth",
+     "min": 0,
+     "max": 1,
+     "def": 0.5,
+     "unit": "%",
+     "curve": "lin",
+     "type": "float",
+     "step": 0
+    },
+    {
+     "id": "xover",
+     "name": "X-Over",
+     "min": 50,
+     "max": 500,
+     "def": 150,
+     "unit": "Hz",
+     "curve": "log",
+     "type": "float",
+     "step": 0
+    }
+   ]
+  },
+  {
+   "id": "flanger",
+   "name": "Flanger",
+   "category": "modulation",
+   "description": "Jet-plane comb sweep.",
+   "tails": false,
+   "params": [
+    {
+     "id": "rate",
+     "name": "Rate",
+     "min": 0.05,
+     "max": 5,
+     "def": 0.3,
+     "unit": "Hz",
+     "curve": "log",
+     "type": "float",
+     "step": 0
+    },
+    {
+     "id": "depth",
+     "name": "Depth",
+     "min": 0,
+     "max": 1,
+     "def": 0.7,
+     "unit": "%",
+     "curve": "lin",
+     "type": "float",
+     "step": 0
+    },
+    {
+     "id": "fb",
+     "name": "Feedback",
+     "min": -0.95,
+     "max": 0.95,
+     "def": 0.5,
+     "unit": "",
+     "curve": "lin",
+     "type": "float",
+     "step": 0
+    }
+   ]
+  },
+  {
+   "id": "phaser",
+   "name": "Phaser",
+   "category": "modulation",
+   "description": "Swirling four-stage phase sweep.",
+   "tails": false,
+   "params": [
+    {
+     "id": "rate",
+     "name": "Rate",
+     "min": 0.05,
+     "max": 8,
+     "def": 0.5,
+     "unit": "Hz",
+     "curve": "log",
+     "type": "float",
+     "step": 0
+    },
+    {
+     "id": "depth",
+     "name": "Depth",
+     "min": 0,
+     "max": 1,
+     "def": 0.6,
+     "unit": "%",
+     "curve": "lin",
+     "type": "float",
+     "step": 0
+    },
+    {
+     "id": "fb",
+     "name": "Feedback",
+     "min": 0,
+     "max": 1,
+     "def": 0.3,
+     "unit": "%",
+     "curve": "lin",
+     "type": "float",
+     "step": 0
+    },
+    {
+     "id": "stages",
+     "name": "Stages",
+     "min": 0,
+     "max": 2,
+     "def": 1,
+     "unit": "",
+     "curve": "lin",
+     "type": "enum",
+     "step": 0,
+     "options": [
+      "2",
+      "4",
+      "8"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "tremolo",
+   "name": "Tremolo",
+   "category": "modulation",
+   "description": "Rhythmic volume pulse.",
+   "tails": false,
+   "params": [
+    {
+     "id": "rate",
+     "name": "Rate",
+     "min": 0.5,
+     "max": 15,
+     "def": 5,
+     "unit": "Hz",
+     "curve": "log",
+     "type": "float",
+     "step": 0
+    },
+    {
+     "id": "depth",
+     "name": "Depth",
+     "min": 0,
+     "max": 1,
+     "def": 0.6,
+     "unit": "%",
+     "curve": "lin",
+     "type": "float",
+     "step": 0
+    },
+    {
+     "id": "shape",
+     "name": "Shape",
+     "min": 0,
+     "max": 2,
+     "def": 0,
+     "unit": "",
+     "curve": "lin",
+     "type": "enum",
+     "step": 0,
+     "options": [
+      "Sine",
+      "Tri",
+      "Square"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "octaver",
+   "name": "Octaver",
+   "category": "pitch",
+   "description": "Adds a sub octave below (and above).",
+   "tails": false,
+   "params": [
+    {
+     "id": "sub",
+     "name": "Sub",
+     "min": 0,
+     "max": 1,
+     "def": 0.6,
+     "unit": "%",
+     "curve": "lin",
+     "type": "float",
+     "step": 0
+    },
+    {
+     "id": "up",
+     "name": "Oct Up",
+     "min": 0,
+     "max": 1,
+     "def": 0.0,
+     "unit": "%",
+     "curve": "lin",
+     "type": "float",
+     "step": 0
+    },
+    {
+     "id": "dry",
+     "name": "Dry",
+     "min": 0,
+     "max": 1,
+     "def": 0.8,
+     "unit": "%",
+     "curve": "lin",
+     "type": "float",
+     "step": 0
+    }
+   ]
+  },
+  {
+   "id": "pitch",
+   "name": "Pitch Shift",
+   "category": "pitch",
+   "description": "Shift up or down by semitones.",
+   "tails": false,
+   "params": [
+    {
+     "id": "semi",
+     "name": "Semi",
+     "min": -12,
+     "max": 12,
+     "def": -12,
+     "unit": "st",
+     "curve": "lin",
+     "type": "float",
+     "step": 1
+    },
+    {
+     "id": "fine",
+     "name": "Fine",
+     "min": -50,
+     "max": 50,
+     "def": 0,
+     "unit": "ct",
+     "curve": "lin",
+     "type": "float",
+     "step": 0
+    }
+   ]
+  },
+  {
+   "id": "delay",
+   "name": "Delay",
+   "category": "time",
+   "description": "Clean digital echo with tone control.",
+   "tails": true,
+   "params": [
+    {
+     "id": "time",
+     "name": "Time",
+     "min": 20,
+     "max": 1500,
+     "def": 380,
+     "unit": "ms",
+     "curve": "log",
+     "type": "float",
+     "step": 0
+    },
+    {
+     "id": "fb",
+     "name": "Feedback",
+     "min": 0,
+     "max": 1,
+     "def": 0.35,
+     "unit": "%",
+     "curve": "lin",
+     "type": "float",
+     "step": 0
+    },
+    {
+     "id": "tone",
+     "name": "Tone",
+     "min": 0,
+     "max": 1,
+     "def": 0.6,
+     "unit": "%",
+     "curve": "lin",
+     "type": "float",
+     "step": 0
+    },
+    {
+     "id": "mod",
+     "name": "Mod",
+     "min": 0,
+     "max": 1,
+     "def": 0.1,
+     "unit": "%",
+     "curve": "lin",
+     "type": "float",
+     "step": 0
+    }
+   ]
+  },
+  {
+   "id": "tape",
+   "name": "Tape Echo",
+   "category": "time",
+   "description": "Warm, wobbly, saturating repeats.",
+   "tails": true,
+   "params": [
+    {
+     "id": "time",
+     "name": "Time",
+     "min": 40,
+     "max": 1200,
+     "def": 300,
+     "unit": "ms",
+     "curve": "log",
+     "type": "float",
+     "step": 0
+    },
+    {
+     "id": "fb",
+     "name": "Feedback",
+     "min": 0,
+     "max": 1,
+     "def": 0.45,
+     "unit": "%",
+     "curve": "lin",
+     "type": "float",
+     "step": 0
+    },
+    {
+     "id": "wow",
+     "name": "Wow",
+     "min": 0,
+     "max": 1,
+     "def": 0.3,
+     "unit": "%",
+     "curve": "lin",
+     "type": "float",
+     "step": 0
+    },
+    {
+     "id": "sat",
+     "name": "Sat",
+     "min": 0,
+     "max": 1,
+     "def": 0.4,
+     "unit": "%",
+     "curve": "lin",
+     "type": "float",
+     "step": 0
+    }
+   ]
+  },
+  {
+   "id": "reverb",
+   "name": "Reverb",
+   "category": "time",
+   "description": "Room to hall, with a low cut for clarity.",
+   "tails": true,
+   "params": [
+    {
+     "id": "size",
+     "name": "Size",
+     "min": 0,
+     "max": 1,
+     "def": 0.5,
+     "unit": "%",
+     "curve": "lin",
+     "type": "float",
+     "step": 0
+    },
+    {
+     "id": "decay",
+     "name": "Decay",
+     "min": 0.2,
+     "max": 10,
+     "def": 2,
+     "unit": "s",
+     "curve": "log",
+     "type": "float",
+     "step": 0
+    },
+    {
+     "id": "damp",
+     "name": "Damp",
+     "min": 0,
+     "max": 1,
+     "def": 0.5,
+     "unit": "%",
+     "curve": "lin",
+     "type": "float",
+     "step": 0
+    },
+    {
+     "id": "lowcut",
+     "name": "Low Cut",
+     "min": 20,
+     "max": 500,
+     "def": 120,
+     "unit": "Hz",
+     "curve": "log",
+     "type": "float",
+     "step": 0
+    }
+   ]
+  },
+  {
+   "id": "gain",
+   "name": "Gain",
+   "category": "utility",
+   "description": "Clean boost or cut.",
+   "tails": false,
+   "params": [
+    {
+     "id": "gain",
+     "name": "Gain",
+     "min": -24,
+     "max": 24,
+     "def": 0,
+     "unit": "dB",
+     "curve": "lin",
+     "type": "float",
+     "step": 0
+    }
+   ]
+  },
+  {
+   "id": "di",
+   "name": "DI Blend",
+   "category": "utility",
+   "description": "Blends in the clean signal from the input.",
+   "tails": false,
+   "params": [
+    {
+     "id": "blend",
+     "name": "Blend",
+     "min": 0,
+     "max": 1,
+     "def": 0.5,
+     "unit": "%",
+     "curve": "lin",
+     "type": "float",
+     "step": 0
+    },
+    {
+     "id": "lowpass",
+     "name": "Lo-Pass",
+     "min": 60,
+     "max": 1000,
+     "def": 250,
+     "unit": "Hz",
+     "curve": "log",
+     "type": "float",
+     "step": 0
+    }
+   ]
+  }
+ ]
+}

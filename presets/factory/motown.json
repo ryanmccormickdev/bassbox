@@ -1,0 +1,46 @@
+{
+  "name": "Motown",
+  "master": {
+    "in_gain_db": 0,
+    "out_gain_db": 0,
+    "bypass": false
+  },
+  "chain": [
+    {
+      "type": "comp",
+      "enabled": true,
+      "mix": 1.0,
+      "params": {
+        "thresh": -18,
+        "ratio": 3,
+        "attack": 20,
+        "release": 400,
+        "blend": 100,
+        "level": 0
+      }
+    },
+    {
+      "type": "amp",
+      "enabled": true,
+      "mix": 1.0,
+      "params": {
+        "gain": 12,
+        "bass": 3,
+        "mid": 2,
+        "treble": -6,
+        "level": -2.0,
+        "cab": 1
+      }
+    },
+    {
+      "type": "cut",
+      "enabled": true,
+      "mix": 1.0,
+      "params": {
+        "lowcut": 40,
+        "highcut": 3500,
+        "slope": 1
+      }
+    }
+  ]
+}

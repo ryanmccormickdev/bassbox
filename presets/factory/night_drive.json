@@ -1,0 +1,48 @@
+{
+  "name": "Night Drive",
+  "master": {
+    "in_gain_db": 0,
+    "out_gain_db": 0,
+    "bypass": false
+  },
+  "chain": [
+    {
+      "type": "distortion",
+      "enabled": true,
+      "mix": 1.0,
+      "params": {
+        "drive": 60,
+        "blend": 75,
+        "tone": 55,
+        "mid": 3,
+        "level": 0.5,
+        "lowkeep": 160
+      }
+    },
+    {
+      "type": "delay",
+      "enabled": true,
+      "mix": 1.0,
+      "params": {
+        "time": 420,
+        "fdbk": 30,
+        "mix": 25,
+        "tone": 3000,
+        "lowcut": 150,
+        "mod": 20
+      }
+    },
+    {
+      "type": "wah",
+      "enabled": true,
+      "mix": 1.0,
+      "params": {
+        "pos": 0.6,
+        "auto": 0,
+        "q": 5,
+        "range": 1,
+        "mix": 100
+      }
+    }
+  ]
+}

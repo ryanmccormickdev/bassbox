@@ -1,0 +1,13 @@
+[Unit]
+Description=bassbox: CPU governor = performance (stable audio latency)
+DefaultDependencies=no
+After=sysinit.target local-fs.target
+Before=pipedald.service
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/bin/sh -c 'for g in /sys/devices/system/cpu/cpufreq/policy*/scaling_governor; do echo performance > "$g"; done'
+
+[Install]
+WantedBy=multi-user.target

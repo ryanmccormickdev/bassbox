@@ -1,0 +1,36 @@
+{
+  "name": "Synth Bass",
+  "master": {
+    "in_gain_db": 0,
+    "out_gain_db": 0,
+    "bypass": false
+  },
+  "chain": [
+    {
+      "type": "subsynth",
+      "enabled": true,
+      "mix": 1.0,
+      "params": {
+        "synth": 85,
+        "filter": 900,
+        "dry": 35,
+        "wave": 1,
+        "octave": 1,
+        "reso": 25
+      }
+    },
+    {
+      "type": "synth_filter",
+      "enabled": true,
+      "mix": 1.0,
+      "params": {
+        "cutoff": 300,
+        "reso": 50,
+        "env": 70,
+        "lfo": 0,
+        "rate": 1,
+        "mix": 100
+      }
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "name": "Clean DI",
+  "master": {
+    "in_gain_db": 0,
+    "out_gain_db": 0,
+    "bypass": false
+  },
+  "chain": [
+    {
+      "type": "comp",
+      "enabled": true,
+      "mix": 1.0,
+      "params": {
+        "thresh": -22,
+        "ratio": 3,
+        "attack": 15,
+        "release": 300,
+        "blend": 100,
+        "level": -1.5
+      }
+    },
+    {
+      "type": "eq3",
+      "enabled": true,
+      "mix": 1.0,
+      "params": {
+        "bass": 2,
+        "mid": -1,
+        "midfreq": 600,
+        "treble": 2,
+        "level": 0
+      }
+    }
+  ]
+}

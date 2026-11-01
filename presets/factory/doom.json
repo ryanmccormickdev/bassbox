@@ -1,0 +1,49 @@
+{
+  "name": "Doom",
+  "master": {
+    "in_gain_db": 0,
+    "out_gain_db": 0,
+    "bypass": false
+  },
+  "chain": [
+    {
+      "type": "fuzz",
+      "enabled": true,
+      "mix": 1.0,
+      "params": {
+        "fuzz": 85,
+        "tone": 35,
+        "level": 0,
+        "blend": 100,
+        "lowkeep": 70,
+        "sputter": 10
+      }
+    },
+    {
+      "type": "amp",
+      "enabled": true,
+      "mix": 1.0,
+      "params": {
+        "gain": 60,
+        "bass": 4,
+        "mid": -3,
+        "treble": -2,
+        "level": -2.5,
+        "cab": 1
+      }
+    },
+    {
+      "type": "reverb",
+      "enabled": true,
+      "mix": 1.0,
+      "params": {
+        "mix": 22,
+        "decay": 4,
+        "size": 85,
+        "damp": 65,
+        "predly": 30,
+        "lowcut": 150
+      }
+    }
+  ]
+}

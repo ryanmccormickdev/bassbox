@@ -1,0 +1,20 @@
+{
+ "_doc": {
+  "bounce_s": "an up followed by a down within this many seconds is a release bounce: the press continues",
+  "drift_samples": "samples dropped before lift-off (XPT2046 positions drift as the finger lifts)",
+  "min_samples": "samples needed before a press is real (also the median window for the down position)",
+  "drag_px": "movement before a press becomes a drag",
+  "long_press_s": "hold time for long-press",
+  "double_tap_s": "max gap between taps of a double-tap",
+  "double_tap_px": "max distance between them",
+  "edge_correction_px": "added to x for touches near the left edge (taps there read 7-15 px left); 0 = off"
+ },
+ "bounce_s": 0.045,
+ "drift_samples": 3,
+ "min_samples": 3,
+ "drag_px": 10,
+ "long_press_s": 0.5,
+ "double_tap_s": 0.35,
+ "double_tap_px": 24,
+ "edge_correction_px": 0
+}

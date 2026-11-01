@@ -1,0 +1,22 @@
+# Private review notes (not for the public repo)
+/NOTES.md
+/MEDIA_NEEDED.md
+
+# Build output, and third-party code fetched by engine/third_party/fetch.sh
+engine/build/
+engine/build-*/
+engine/tests/out/
+engine/third_party/NeuralAmpModelerCore/
+engine/third_party/eigen/
+engine/third_party/nlohmann/
+
+samples/
+enclosure/out/
+enclosure/scratch/
+enclosure/.venv/
+ui/out/
+__pycache__/
+*.pyc
+*.gcode
+.venv*/
+.DS_Store

@@ -1,0 +1,20 @@
+[Unit]
+Description=bassbox: touchscreen UI (ST7796S panel via DRM + XPT2046 touch)
+Documentation=file:/opt/bassbox/ui/DESIGN.md
+# Starts even if the engine is down: the UI shows "reconnecting" and keeps retrying.
+After=bassbox-engine.service
+Wants=bassbox-engine.service
+StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/python3 /opt/bassbox/ui/main.py
+Restart=always
+RestartSec=1
+# CPU3 is the audio core; the engine always wins.
+CPUAffinity=0-2
+Nice=5
+Environment=PYTHONUNBUFFERED=1
+
+[Install]
+WantedBy=multi-user.target

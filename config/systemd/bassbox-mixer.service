@@ -1,0 +1,12 @@
+[Unit]
+Description=bassbox: apply WM8960 mixer profile (line-in L -> boost -> ADC, DAC -> headphones only)
+After=sound.target alsa-restore.service
+Before=bassbox-engine.service pipedald.service
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/opt/bassbox/scripts/mixer.sh apply
+
+[Install]
+WantedBy=multi-user.target

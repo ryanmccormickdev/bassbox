@@ -1,0 +1,10 @@
+{
+ "_doc": "USB HID controls (ui/controls.py). Copy to /var/lib/bassbox/controls.json to customise. Actions: toggle_slot:N, prev_preset, next_preset, bypass, tuner, board, focus_param (adjust the last-touched knob). rel_step: fraction of full range per REL tick.",
+ "keys": {"KEY_1": "toggle_slot:1", "KEY_2": "toggle_slot:2", "KEY_3": "toggle_slot:3", "KEY_4": "toggle_slot:4",
+          "KEY_5": "toggle_slot:5", "KEY_6": "toggle_slot:6", "KEY_7": "toggle_slot:7", "KEY_8": "toggle_slot:8",
+          "KEY_LEFT": "prev_preset", "KEY_RIGHT": "next_preset", "KEY_PAGEUP": "prev_preset", "KEY_PAGEDOWN": "next_preset",
+          "KEY_B": "bypass", "KEY_T": "tuner", "KEY_ESC": "board"},
+ "rel": {"REL_DIAL": "focus_param", "REL_WHEEL": "focus_param", "REL_HWHEEL": "focus_param"},
+ "abs": {"*": "focus_param"},
+ "rel_step": 0.01
+}

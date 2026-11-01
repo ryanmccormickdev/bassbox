@@ -1,0 +1,49 @@
+{
+  "name": "Dub Echo",
+  "master": {
+    "in_gain_db": 0,
+    "out_gain_db": 0,
+    "bypass": false
+  },
+  "chain": [
+    {
+      "type": "distortion",
+      "enabled": true,
+      "mix": 1.0,
+      "params": {
+        "drive": 35,
+        "blend": 60,
+        "tone": 40,
+        "mid": 2,
+        "level": -1.0,
+        "lowkeep": 150
+      }
+    },
+    {
+      "type": "tape",
+      "enabled": true,
+      "mix": 1.0,
+      "params": {
+        "time": 375,
+        "fdbk": 55,
+        "mix": 35,
+        "wow": 40,
+        "tone": 40,
+        "sat": 40
+      }
+    },
+    {
+      "type": "reverb",
+      "enabled": true,
+      "mix": 1.0,
+      "params": {
+        "mix": 20,
+        "decay": 2.5,
+        "size": 70,
+        "damp": 60,
+        "predly": 20,
+        "lowcut": 200
+      }
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+-std=c++17
+-Iinclude
+-Ieffects
+-Isrc
+-Ithird_party
+-Ithird_party/eigen
+-Ithird_party/nlohmann
+-xc++

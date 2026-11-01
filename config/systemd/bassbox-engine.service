@@ -1,0 +1,30 @@
+[Unit]
+Description=bassbox: audio engine (hw:wm8960soundcard, RT audio thread on CPU3)
+Documentation=file:/opt/bassbox/docs/architecture.md
+After=bassbox-mixer.service bassbox-governor.service sound.target
+Wants=bassbox-mixer.service bassbox-governor.service
+# PiPedal is the disabled fallback; never let both grab the card
+Conflicts=pipedald.service
+StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+ExecStart=/usr/local/bin/bassbox-engine --config /opt/bassbox/config/engine.conf
+Restart=always
+RestartSec=1
+TimeoutStopSec=5
+# /run/bassbox/engine.sock; kept across restarts so clients just reconnect
+RuntimeDirectory=bassbox
+RuntimeDirectoryMode=0755
+RuntimeDirectoryPreserve=yes
+# /var/lib/bassbox: presets, live.json
+StateDirectory=bassbox
+# The control thread runs on CPU0-2; the audio thread moves itself to CPU3 (SCHED_FIFO 80).
+CPUAffinity=0-2
+LimitRTPRIO=95
+LimitMEMLOCK=infinity
+OOMScoreAdjust=-900
+Nice=-5
+
+[Install]
+WantedBy=multi-user.target

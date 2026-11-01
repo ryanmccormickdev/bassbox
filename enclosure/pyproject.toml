@@ -1,0 +1,25 @@
+[project]
+name = "bassbox-enclosure"
+version = "0.1.0"
+description = "Parametric build123d generator for the bassbox pedal enclosure (lid, base, spacers)"
+requires-python = ">=3.12"
+dependencies = [
+  "build123d==0.13.0",
+  "lib3mf>=2.4",
+  "numpy",
+  "trimesh>=4",
+  "pyvista>=0.44",
+]
+
+[dependency-groups]
+dev = ["pytest>=8", "ruff"]
+
+[tool.uv]
+package = false
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 110

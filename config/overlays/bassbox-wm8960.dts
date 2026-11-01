@@ -1,0 +1,32 @@
+// bassbox: WM8960 card tweaks, applied after dtoverlay=wm8960-soundcard (config.txt order).
+//
+// Why: DAPM powers the class-D speaker amp whenever playback runs (the stock routing makes
+// SPK_RP/SPK_RN unrouted output endpoints, and "Speaker" is always connected). With it on, the
+// ADC noise floor rises ~10 dB (-93 -> -83 dBFS RMS on LINPUT3), measured 2026-10-06.
+// What: route all four speaker pins to the "Speaker" widget and expose it as a DAPM pin switch
+// ("Speaker Switch"); config/mixer.conf turns it off, so DAPM never powers the class-D stage.
+// Everything else is identical to wm8960-soundcard's routing.
+/dts-v1/;
+/plugin/;
+
+/ {
+	compatible = "brcm,bcm2835";
+
+	fragment@0 {
+		target = <&sound>;
+		__overlay__ {
+			simple-audio-card,routing =
+				"Headphone Jack", "HP_L",
+				"Headphone Jack", "HP_R",
+				"Speaker", "SPK_LP",
+				"Speaker", "SPK_LN",
+				"Speaker", "SPK_RP",
+				"Speaker", "SPK_RN",
+				"LINPUT1", "Mic Jack",
+				"LINPUT3", "Mic Jack",
+				"RINPUT1", "Mic Jack",
+				"RINPUT2", "Mic Jack";
+			simple-audio-card,pin-switches = "Speaker";
+		};
+	};
+};

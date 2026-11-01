@@ -1,0 +1,237 @@
+{
+  "parts": {
+    "lid": {
+      "solids": 1,
+      "valid": true,
+      "watertight": true,
+      "bodies": 1,
+      "triangles": 18368,
+      "volume_mm3": 11744.7,
+      "installed_bbox": [
+        -2.0,
+        -2.0,
+        34.1,
+        114.44,
+        64.14,
+        46.5
+      ],
+      "print_size": [
+        116.44,
+        66.14,
+        12.4
+      ],
+      "overhangs": {
+        "bed chamfer": 16,
+        "bridge": 11
+      },
+      "overhang_other": [],
+      "knife_edges": [],
+      "small_pieces": [],
+      "engraving_hits": 5
+    },
+    "base": {
+      "solids": 1,
+      "valid": true,
+      "watertight": true,
+      "bodies": 1,
+      "triangles": 168240,
+      "volume_mm3": 38294.9,
+      "installed_bbox": [
+        -2.0,
+        -2.0,
+        -2.0,
+        114.44,
+        64.14,
+        38.4
+      ],
+      "print_size": [
+        116.44,
+        66.14,
+        40.4
+      ],
+      "overhangs": {
+        "bed chamfer": 8,
+        "bridge": 20,
+        "barb ledge": 4
+      },
+      "overhang_other": [],
+      "knife_edges": [],
+      "small_pieces": [],
+      "engraving_hits": 0
+    },
+    "spacer": {
+      "solids": 1,
+      "valid": true,
+      "watertight": true,
+      "bodies": 1,
+      "triangles": 2016,
+      "volume_mm3": 132.8,
+      "installed_bbox": [
+        21.2,
+        50.2,
+        24.25,
+        26.2,
+        55.2,
+        34.1
+      ],
+      "print_size": [
+        5.0,
+        5.0,
+        9.85
+      ],
+      "overhangs": {},
+      "overhang_other": [],
+      "knife_edges": [],
+      "small_pieces": [],
+      "engraving_hits": 0
+    }
+  },
+  "walls": [
+    {
+      "part": "base",
+      "where": "IO wall",
+      "mm": 2.0
+    },
+    {
+      "part": "base",
+      "where": "IO panel",
+      "mm": 1.2
+    },
+    {
+      "part": "base",
+      "where": "IO panel, USB-C..HDMI web",
+      "mm": 1.2
+    },
+    {
+      "part": "base",
+      "where": "IO panel web, along the wall",
+      "mm": 2.7
+    },
+    {
+      "part": "base",
+      "where": "jack spot face",
+      "mm": 1.6
+    },
+    {
+      "part": "base",
+      "where": "+Y wall",
+      "mm": 2.0
+    },
+    {
+      "part": "base",
+      "where": "+Y wall at a vent",
+      "mm": 2.0
+    },
+    {
+      "part": "base",
+      "where": "jack-end wall",
+      "mm": 2.0
+    },
+    {
+      "part": "base",
+      "where": "USB-end pillar USB2|USB3",
+      "mm": 2.0
+    },
+    {
+      "part": "base",
+      "where": "USB-end pillar, across",
+      "mm": 2.2
+    },
+    {
+      "part": "base",
+      "where": "floor",
+      "mm": 2.0
+    },
+    {
+      "part": "base",
+      "where": "snap tab",
+      "mm": 1.4
+    },
+    {
+      "part": "base",
+      "where": "rabbet lip",
+      "mm": 1.0
+    },
+    {
+      "part": "lid",
+      "where": "bezel plate",
+      "mm": 1.6
+    },
+    {
+      "part": "lid",
+      "where": "skirt",
+      "mm": 2.0
+    },
+    {
+      "part": "lid",
+      "where": "skirt, IO panel",
+      "mm": 1.2
+    },
+    {
+      "part": "lid",
+      "where": "skirt at the USB-end ports",
+      "mm": 2.0
+    },
+    {
+      "part": "lid",
+      "where": "snap window bar",
+      "mm": 2.441
+    },
+    {
+      "part": "lid",
+      "where": "rabbet skirt",
+      "mm": 0.85
+    }
+  ],
+  "walls_min": 1.2,
+  "snap": {
+    "z_root": 24.641,
+    "z_retention": 36.641,
+    "z_tip": 38.4,
+    "window_z": [
+      36.541,
+      38.5
+    ],
+    "strain_pct": 1.17,
+    "tip_force_n": 3.81,
+    "close_force_n": 4.84
+  },
+  "lid_base_overlap_mm3": 0.0,
+  "snap_clearance": 0.064,
+  "glass_gap": 0.35,
+  "window": [
+    13.2,
+    97.52,
+    2.83,
+    59.31
+  ],
+  "slice": {
+    "plate": {
+      "time": "7h 30m",
+      "minutes": 450,
+      "grams": 63.0,
+      "metres": 20.62,
+      "fits": true,
+      "warnings": [],
+      "gcode": "out/pedal/pedal-plate-ender-petg.gcode"
+    },
+    "support_probe": {
+      "lid": {
+        "support_extrusions": 0,
+        "grams_alone": 14.9
+      },
+      "base": {
+        "support_extrusions": 8574,
+        "grams_alone": 48.2
+      }
+    }
+  },
+  "assembly": {
+    "ok": true,
+    "failures": [],
+    "tight": [
+      "spacer / hat.pcb: 0.06"
+    ]
+  },
+  "failures": []
+}
