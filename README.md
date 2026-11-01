@@ -6,19 +6,13 @@
 
 A bass multi-effects pedal on a Raspberry Pi 4, with a codec HAT for audio in and out, a 4-inch touchscreen and a 3D-printed box. You build a chain of effects on the screen (distortion into delay into wah, say), and it boots straight to play. It has 33 effects, including a neural amp model and a looper, plus a tuner and 11 presets.
 
-I built it in October. The write-up is short because I haven't had time to document it properly yet.
-
 <p>
   <img src="media/2026-10-06-0147-guts.jpg" width="260" alt="Top view of the Pi, the codec HAT and two quarter-inch jacks, wired up with rainbow ribbon cable">
   <img src="media/2026-10-06-1449-tape-version.jpg" width="260" alt="The whole stack wrapped in black electrical tape, held in my hand">
   <img src="media/2026-10-21-clear-base.jpg" width="260" alt="The Pi held above a clear printed base with the two jacks mounted in its side">
 </p>
 
-It started on October 1 as a single preset in PiPedal (an open-source pedalboard host for the Pi), controlled from a browser on my laptop. That version is in [`history/v1-pipedal/`](history/v1-pipedal/). Then the goal changed to a whole pedal: plug in a bass, build the chain on the touchscreen, no laptop. So I built my own engine and touchscreen app, and by October 6 the whole thing was held together with electrical tape (above). The box came last.
-
-Offline renders through the engine, on a synthetic test riff: [dry](media/offline-render-test-riff-dry.mp3), and [through the Night Drive preset](media/offline-render-test-riff-night-drive.mp3).
-
-As of October 18 a real bass wasn't getting from the input jack to the codec (the wiring was the suspect), so latency and input gain are unmeasured. What's been measured and what hasn't is in [`docs/status.md`](docs/status.md).
+Will document this thing in more detail/have pics of it working later on.
 
 ## How it works
 
